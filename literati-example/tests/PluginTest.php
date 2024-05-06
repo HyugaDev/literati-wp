@@ -10,6 +10,7 @@ final class PluginTest extends TestCase {
   public function setUp(): void {
     WP_Mock::setUp();
 
+    Plugin::instance();
     /** Setup mocks */
     WP_Mock::userFunction('get_option', [
       'return' => function ($key) {
@@ -44,7 +45,7 @@ final class PluginTest extends TestCase {
         return 'another';
       }
     ]);
-    
+
   }
 
   public function tearDown(): void {
@@ -56,5 +57,10 @@ final class PluginTest extends TestCase {
 
     $this->assertSame($plugin->get_plugin_version(), '1.0.0');
     $this->assertSame($plugin->is_plugin_initialized(), true);
+  }
+
+  public function test_constants_defined() {
+    $this->assertTrue(defined('LITERATI_EXAMPLE_ABSPATH'), 'LITERATI_EXAMPLE_ABSPATH is not defined');
+    $this->assertEquals(trailingslashit(plugin_dir_path(__DIR__)), LITERATI_EXAMPLE_ABSPATH);
   }
 }

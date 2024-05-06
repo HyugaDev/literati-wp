@@ -184,6 +184,7 @@ class Blocks {
     wp_enqueue_media();
     wp_enqueue_script( 'promotion-admin-script', plugin_dir_url( __FILE__ ) . 'js/admin-script.js', array( 'jquery' ), null, true );
   }
+
   public static function wp_enqueue_scripts() {
 
     // Enqueue public scripts and styles here
@@ -193,8 +194,8 @@ class Blocks {
     wp_enqueue_style( 'promotion-bootstrap-css', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css' );
     wp_enqueue_script( 'promotion-public-script', plugin_dir_url( __FILE__ ) . 'js/public-script.js', array( 'jquery' ), null, true );
     $promotion_timer = get_post_meta( get_the_ID(), 'promotion_timer', true );
-    
-	
+
+
 	if($promotion_timer != ''){
 
 		wp_localize_script(
@@ -210,7 +211,6 @@ class Blocks {
   }
 
   public static function meta_fields_register_meta() {
-
     $metafields = [ 'promotion_timer' ];
 
     foreach( $metafields as $metafield ){
@@ -220,10 +220,10 @@ class Blocks {
             'type' => 'string',
             'single' => true,
             'sanitize_callback' => 'sanitize_text_field',
-            'auth_callback' => function() { 
+            'auth_callback' => function() {
                 return current_user_can( 'edit_posts' );
             }
         ));
-    }  
+    }
   }
 }
