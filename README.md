@@ -1,48 +1,49 @@
 # Literati WordPress Plugin Exercise
-Congratulations! We are really excited that you are interested in joining Literati Engineering and have made it to this stage. 
 
-This WordPress exercise will help give us a working, real-world example of your code so that we can see your thought process as you work through problems on both the front-end and back-end, what tools you utilize, and how you organize your work. The basic requirements of the final deliverable are outlined below but we leave it pretty open-ended to let you decide the best method to implement and any tools or libraries required. This exercise will not be used in anything by Literati, so you can be as creative as you wish and are not concerned with Pixel Perfect representation.
+## Setup Requirements
 
-## Prerequisites
-In order to use/build this repo, you must have the following available:
+To work with this repository, you will need the following:
 
-* PHP 8.0+
-* [Composer](https://getcomposer.org/download/)
-* [WordPress 6.4+](https://wordpress.org/download/releases/)
+- PHP 8.0+
+- [Composer](https://getcomposer.org/download/)
+- [WordPress 6.4+](https://wordpress.org/download/releases/)
 
-## Final Deliverable
-Using the boilerplate provided, create an operational plugin along with any applicable tests that does the following:
+## Plugin Requirements
 
-1.  Creates a new Promotion post type that includes 4 fields:
-    * Header
-    * Text
-    * Button
-    * Image
+The plugin fulfills the following requirements:
 
-2.  Implements a Carousel Gutenberg block using the [Figma design here](https://www.figma.com/proto/cb6J47VWG0OiNHgHYrFfYJ/Literati-Example-Carousel?page-id=0%3A1&type=design&node-id=1-2&viewport=1037%2C847%2C1&t=6HoJEb2wYGRRrobI-8&scaling=scale-down&starting-point-node-id=1%3A2&device-frame=0&hotspot-hints=0&disable-default-keyboard-nav=1&hide-ui=1) (or use the .fig file in the design-files directory) with the following:
-    * The block should have a field to define the transition timer (how many seconds between moving to the next item)
-    * The carousel should display published Promotion content types
-    * The carousel should auto transition between the attached promotions on the defined timer
+1. **Promotion Post Type:** Creates a custom post type called "Promotion" with the following fields:
+   - **Header**: A short title for the promotion.
+   - **Text**: A detailed description.
+   - **Button**: A button label.
+   - **Image**: An image field for visual representation.
 
+2. **Carousel Gutenberg Block:** Implements a carousel block based on the [provided design](https://www.figma.com/proto/cb6J47VWG0OiNHgHYrFfYJ/Literati-Example-Carousel?page-id=0%3A1&type=design&node-id=1-2&viewport=1037%2C847%2C1&t=6HoJEb2wYGRRrobI-8&scaling=scale-down&starting-point-node-id=1%3A2&device-frame=0&hotspot-hints=0&disable-default-keyboard-nav=1&hide-ui=1) (or the `.fig` file in the design-files directory) with:
+   - **Transition Timer**: Allows configuration of the slide transition interval.
+   - **Display Promotions**: The carousel displays published promotions.
+   - **Auto Transition**: Automatically transitions between promotions based on the timer.
 
-![image info](./design-files/literati_example_carousel.jpg)
+![Carousel Design](./design-files/literati_example_carousel.jpg)
+![Literati Build] (https://drive.google.com/file/d/1vMQzdjSH3pS7qw6sdZA9n3Gs1W8SV_k0/view?usp=sharing)
 
-## Repo Setup
-This Plugin repo follows a structure similar to some of our custom plugins used on our various sites. 
+## Project Structure
 
-```
-/design-files   This contains any image references you can use in your development
-/literati-example  This is the main plugin directory
-  - /blocks   This contains block specific code
-  - /includes This contains plugin function
-  - /tests    This contains any tests
-  - composer.json  Composer dependencies for the plugin
-  - literati-example.php   The singleton for the plugin
-  - package.json   This contains npm dependencies, including wp-scripts for building the blocks
-composer.json  These are composer dependencies used outside of the plugin, such as phpunit
-Makefile   Commands
-phpcs.xml   Test configuration
-phpunit.xml   Test Configuration
+This plugin uses a structure similar to other custom plugins used at Literati:
+
+```plaintext
+/design-files            # Design references and files
+/literati-example        # Main plugin directory
+  - /blocks              # Block-specific code
+  - /includes            # Plugin-specific functions
+  - /tests               # Test cases for the plugin
+  - composer.json        # Composer dependencies for the plugin
+  - literati-example.php # Plugin's main entry point
+  - package.json         # npm dependencies, including wp-scripts
+composer.json            # Composer dependencies for the entire project
+Makefile                 # Make commands for managing the project
+phpcs.xml                # PHP CodeSniffer configuration
+phpunit.xml              # PHPUnit configuration
+
 ```
 
 ## Available Commands
@@ -60,12 +61,18 @@ This will run any build tasks required for deploy
 ```make release```
 This will build and package a zip file for the plugin that can be uploaded to a WordPress instance
 
+## Plugin Configuration
 
-## Plugin coniguration
+1. **Install the Plugin:**
+   - Upload the `literati-example.zip` file to WordPress.
+   - Activate the plugin to see a new "Promotions" menu in the dashboard.
 
-1. Import literati-example.zip to the WordPress.
-   - On activation "Promotions" admin menu will be created in the WordPress dashboard.
-2. Add multiple promotions by navigating to dashboard > Promotions > Add New
-3. In order to display carousel add Gutenberg blog in the page by the title "Carousel Block".
-4. After that set the slides timer and then update/publish page.
-5. Carousel will be visible on the page with navigation controls.
+2. **Add Promotions:**
+   - Go to Dashboard > Promotions > Add New to create new promotions.
+
+3. **Add the Carousel Block:**
+   - Add the Gutenberg block named "Carousel Block" to any page.
+   - Set the timer and update/publish the page.
+
+4. **View the Carousel:**
+   - View the page to see the carousel with navigation controls and the configured promotions.
